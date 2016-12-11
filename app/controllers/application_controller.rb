@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
 
 
@@ -36,8 +37,8 @@ class ApplicationController < ActionController::Base
     if current_user
       true
     else
-      redirect_to new_users_session_path,
-                  notice:  "You must be logged in to access that page"
+      redirect_to new_users_session_path
+      flash[:notice] =  "You must be logged in to access that page"
     end
   end
 
